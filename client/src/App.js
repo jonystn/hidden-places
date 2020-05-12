@@ -8,7 +8,7 @@ import StartPage from "./components/StartPage/StartPage";
 function App() {
   return (
     <Switch>
-      <Route exact path='/' component={StartPage} />
+      {/* <Route ersxact path='/' component={StartPage} /> */}
       <>
         <Navbar />
       </>

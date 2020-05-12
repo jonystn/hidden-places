@@ -4,7 +4,7 @@ import "./Navbar.scss";
 
 const Navbar = (props) => {
   return (
-    <nav className=''>
+    <nav className='Navbar'>
       <div className='Active Icon'>
         <img src='../images/navbar/globe.svg' alt='' />
         <span>Explore</span>
