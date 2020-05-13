@@ -4,14 +4,20 @@ import { Link } from "react-router-dom";
 
 const StartPage = (props) => {
   return (
-    <div className='StartPage'>
-      <img src='../images/logo.svg' alt='Logo' />
+    <div className="StartPage">
+      <img className="Logo" src="../images/logo.svg" alt="Logo" />
       <h1>Welcome to Hidden Places!</h1>
-      <p>Welcome to Hidden Places!</p>
-      <div>
-        <Link>Sing in</Link>
-        <Link>Create an account</Link>
-      </div>
+      <p className="MediumText">
+        There are many cool places hidden around the world which are not famous
+        sightseeing. In this App, you can spot and find those places and have an
+        amazing experience.
+      </p>
+      <Link to="/login" className="PrimaryButton">
+        Sign in
+      </Link>
+      <Link to="/signup" className="SecondaryButton">
+        Create an account
+      </Link>
     </div>
   );
 };

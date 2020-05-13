@@ -1,18 +1,14 @@
 .Navbar {
   display: flex;
-  width: 100%;
+  max-width: 500px;
   height: 89px;
   box-shadow: 0px -10px 20px #0000000f;
   border-radius: 40px 40px 0px 0px;
   background-color: white;
-  position: fixed;
-  left: 0;
+  position: sticky;
   bottom: 0;
-
-  .Active {
-    filter: invert(55%) sepia(10%) saturate(2821%) hue-rotate(42deg)
-      brightness(106%) contrast(80%);
-  }
+  left: 0;
+  margin: 0 auto;
 
   span {
     font-size: 0.8rem;
@@ -23,15 +19,26 @@
     margin-bottom: 15px;
   }
 
-  div {
+  .NavLink {
     display: grid;
     justify-content: center;
     width: 25%;
   }
 
-  img {
-    padding: 24px 7px 0 7px;
+  i {
+    padding: 20px 7px 6px 7px;
     height: 28px;
     margin: 0 auto;
+  }
+
+  .NavLinkActive > i > svg > path,
+  .NavLinkActive > span {
+    color: #9eb85d;
+  }
+
+  .NavLink:hover > i > svg > path,
+  .NavLink:hover > span {
+    color: #9eb85d !important;
+    transition: 0.6s ease-in-out;
   }
 }

@@ -3,3 +3,150 @@
   margin: 0;
   padding: 0;
 }
+
+// Global styles
+
+// colors
+//   green: #78a733;
+//   black: #333333;
+//   gray: #d1d1cc;
+
+// fonts
+// Montserrat
+// Montserrat 600 (bold)
+
+// box-shadow: 0px -10px 20px #0000000f;
+
+html {
+  color: #333333;
+  background-color: #d1d1cc;
+  overflow: hidden;
+}
+
+//Buttons
+
+.PrimaryButton {
+  background-color: #9eb85d;
+  border: 2px solid #9eb85d;
+  padding: 0 13px;
+  margin: 5px 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.SecondaryButton {
+  background-color: white;
+  border: 2px solid #9eb85d;
+  padding: 0 13px;
+  margin: 5px 0;
+  width: 100%;
+  height: 48px;
+  border-radius: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #9eb85d;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+h1 {
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.Hyperlink {
+  font-size: 1.125rem;
+  color: #9eb85d;
+}
+
+.SmallText {
+  font-size: 0.9rem;
+  color: #d1d1cc;
+}
+
+.MediumText {
+  font-size: 1.125rem;
+}
+
+.MediumTextBold {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+img {
+  padding: 6px;
+}
+
+a {
+  text-decoration: none;
+  color: #333333;
+}
+
+//Global Forms
+
+*::placeholder {
+  font-size: 1.125rem;
+}
+
+*:focus {
+  outline: none;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.Form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+input {
+  font-size: 1.2rem;
+  border: none;
+  border-bottom: 1px solid #d1d1cc;
+  margin: 5px 0;
+  width: 89%;
+  height: 48px;
+  transition: 0.08s ease-in;
+}
+
+.InputContainer {
+  position: relative;
+  width: 100%;
+}
+
+.InputContainer > i {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+
+.InputContainer > input {
+  padding-left: 40px;
+}
+
+input:focus,
+input:active {
+  color: #9eb85d;
+  border-bottom: 2px solid #d1d1cc;
+  font-size: 1.5rem;
+  padding-left: 40px;
+}
+
+#password {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,21 @@
+.Explore {
+  margin: 0 auto;
+  max-width: 500px;
+  max-height: 823px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  flex-wrap: wrap;
+
+  .RamdonImage {
+    top: 0 !important;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  input {
+    width: 90%;
+  }
+}
