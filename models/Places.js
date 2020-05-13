@@ -1,25 +1,25 @@
 const mongoose = require ('mongoose');
-const {Schema, model} = mongoose;
+const Schema = mongoose.Schema;
 
 const placesSchema = new Schema ({
 name: String,
-location: [{
-  conutry: String,
+location: {
+  country: String,
   city: String,
   address: String
-}],
+},
 
-geoloc: [{
+geoloc: {
   latitude: Number,
   longitude: Number
-}],
+},
 comment: String,
 img: String,
 
 })
 
-const Places = model('Places', placesSchema);
+const Places = mongoose.model('Places', placesSchema);
 
-module.export = Places;
+module.exports = Places;
 
 

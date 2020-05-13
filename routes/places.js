@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Places = require ("../model/Places");
+const Places = require ("../models/Places");
 
 
 
@@ -10,7 +10,7 @@ const location = req.body.location;
 const geoloc = req.body.geoloc
 const img =req.body.img
 const comment = "";
-
+console.log (req.body)
 
 Places.create({
   name,
