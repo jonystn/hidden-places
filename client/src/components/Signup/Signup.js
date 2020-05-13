@@ -28,14 +28,14 @@ function Signup(props) {
       <form className="Form" onSubmit="">
         <div className="InputContainer">
           <i>{user}</i>
-          <label htmlFor="name"></label>
+          <label htmlFor="username"></label>
           <input
-            placeholder="Name"
+            placeholder="Username"
             type="text"
-            name="name"
+            name="username"
             // value={this.state.name}
             // onChange={this.handleChange}
-            id="name"
+            id="username"
             autocomplete="off"
             required
           />
@@ -43,8 +43,8 @@ function Signup(props) {
 
         <div className="InputContainer">
           <i>{mail}</i>
-          <label htmlFor="username"></label>
-          <input placeholder="E-mail" type="email" name="username" required />
+          <label htmlFor="email"></label>
+          <input placeholder="E-mail" type="email" name="email" required />
         </div>
 
         <div className="InputContainer">

@@ -28,8 +28,8 @@ function Login(props) {
       <form className="Form" onSubmit="">
         <div className="InputContainer">
           <i>{mail}</i>
-          <label htmlFor="username"></label>
-          <input placeholder="E-mail" type="email" name="username" required />
+          <label htmlFor="email"></label>
+          <input placeholder="E-mail" type="email" name="email" required />
         </div>
 
         <div className="InputContainer">
