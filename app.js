@@ -10,11 +10,13 @@ const logger = require("morgan");
 const path = require("path");
 
 mongoose
+
   .connect("mongodb://localhost/hidden-places", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
+
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
@@ -74,5 +76,10 @@ app.locals.title = "Hidden Places";
 
 //Routes
 app.use("/auth", require("./routes/auth"));
+
+app.use("/spotaphoto", require("./routes/places"));
+
+
+
 
 module.exports = app;
