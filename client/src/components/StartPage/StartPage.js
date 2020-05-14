@@ -1,8 +1,9 @@
 import React from "react";
 import "./StartPage.scss";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const StartPage = (props) => {
+  if (props.user) return <Redirect to="/explore" />;
   return (
     <div className="StartPage">
       <img className="Logo" src="../images/logo.svg" alt="Logo" />

@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5555",
   "dependencies": {
     "@babel/core": "7.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
@@ -54,6 +55,7 @@
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+    "react-stack-cards": "^1.0.8",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
     "sass-loader": "^8.0.2",
