@@ -6,6 +6,7 @@ const userSchema = new Schema(
     username: String,
     email: String,
     password: String,
+    favorites: [{ type: Schema.Types.ObjectId, ref: "Places" }],
   },
   {
     timestamps: true,
