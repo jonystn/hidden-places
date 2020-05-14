@@ -1,11 +1,28 @@
 .Profile {
+  padding: 0 40px;
   margin: 0 auto;
   max-width: 500px;
   max-height: 823px;
   height: 100vh;
   background-color: white;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  // flex-wrap: wrap;
+  flex-direction: column;
+
+  .Logo {
+    width: 160px;
+    padding: 70px 0;
+  }
+
+  p {
+    padding-bottom: 30px;
+  }
+
+  // div {
+  //   display: flex;
+  //   align-items: center;
+  //   margin-top: 50px;
+  // }
 }
