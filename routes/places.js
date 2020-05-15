@@ -6,7 +6,8 @@ const uploader = require("../configs/cloudinary")
 
 router.post("/", uploader.single("photo"), (req, res) => {
   // "photo" is a name attribute from the upload input file tag
-  const {name,  country, city, address,  geoloc, comment}= req.body;
+  const {name, latitude,
+    longitude, comment}= req.body;
   const imgPath =req.file.url;
   const imgName =req.file.originalname
 
@@ -16,10 +17,8 @@ console.log (req.body)
 
 Places.create({
   name,
-  country,
-  city,
-  address,
-  geoloc,
+  latitude,
+  longitude,
   comment,
   imgPath,
   imgName
@@ -45,12 +44,13 @@ router.get("/", (req, res)=>{
   })
 });
 
-router.get("/details", (req, res)=>{
-  Places.findById(req.params.details)
+router.get("/placeinfo/:id", (req, res)=>{
+  Places.findById(req.params.id)
   .then(places =>{
     if (!places) {
       res.status(404).json(places)
     }
+    res.json(places)
   })
   .catch(error=>{
       res.json(error)
