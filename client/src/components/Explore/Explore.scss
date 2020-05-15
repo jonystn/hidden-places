@@ -110,4 +110,10 @@
     box-shadow: 3px 3px 3px #00000048;
     border: 3px solid #ffffffe7;
   }
+
+
+  div:nth-child(2) > div {
+    top: 10px;
+  }
+
 }
