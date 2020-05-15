@@ -4,10 +4,9 @@ const Places = require ("../models/Places");
 const uploader = require("../configs/cloudinary")
 
 
-router.post("/", uploader.single("photo"), (req, res) => {
+router.post("/places", uploader.single("photo"), (req, res) => {
   // "photo" is a name attribute from the upload input file tag
-  const {name, latitude,
-    longitude, comment}= req.body;
+  const {name, latitude, longitude, comment}= req.body;
   const imgPath =req.file.url;
   const imgName =req.file.originalname
 
