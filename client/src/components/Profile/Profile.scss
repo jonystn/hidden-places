@@ -1,5 +1,5 @@
 .Profile {
-  padding: 0 40px;
+  // padding: 0 40px;
   margin: 0 auto;
   max-width: 500px;
   max-height: 823px;
@@ -20,9 +20,8 @@
     padding-bottom: 30px;
   }
 
-  // div {
-  //   display: flex;
-  //   align-items: center;
-  //   margin-top: 50px;
-  // }
+  div {
+    width: 90%;
+    margin: 0 40px;
+  }
 }

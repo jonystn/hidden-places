@@ -18,18 +18,22 @@ const Profile = (props) => {
   return (
     <div className="Profile">
       <img className="Logo" src="../images/logo.svg" alt="Logo" />
-      <span>Username:</span>
-      <h1>{props.user.username}</h1>
+      <h1>
+        {props.user.username.charAt(0).toUpperCase() +
+          props.user.username.slice(1)}
+      </h1>
       <span>E-mail:</span>
       <p className="MediumText">jonathan@gmail.com {props.user.email}</p>
 
-      <Link
-        to="/login"
-        onClick={() => handleLogout(props)}
-        className="PrimaryButton"
-      >
-        Sign out
-      </Link>
+      <div>
+        <Link
+          to="/login"
+          onClick={() => handleLogout(props)}
+          className="PrimaryButton"
+        >
+          Sign out
+        </Link>
+      </div>
     </div>
   );
 };
