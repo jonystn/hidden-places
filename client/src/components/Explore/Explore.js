@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Explore.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,72 +6,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ReactMapGl from "react-map-gl";
-
+import ReactMapGl, {Marker} from "react-map-gl";
+import { set } from "mongoose";
+import axios from "axios";
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
 
-const placePhotos = [
-  {
-    name: "Chinese teahouse (Gärten der Welt)",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Eisenacher Strasse 99, 12685",
-    },
-    _id: "dsfads1",
-    latitude: 52.53973,
-    longitude: 13.579218,
 
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-september-2014/images/chinese-teahouse-berlin-marzahn.jpg",
-  },
-  {
-    name: "A French railway station",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Buddestraße 2-4, 13507",
-    },
-    _id: "dsfads2",
-    latitude: 52.588821,
-    longitude: 13.288896,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-june-2015/images/gare-francaise-french-railway-station-tegel-berlin.jpg",
-  },
-  {
-    name: "Beautiful hidden courtyard",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Lindenstraße 20-25, 10969",
-    },
-    _id: "dsfads3",
-    latitude: 52.503837,
-    longitude: 13.397246,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-may-2014/images/kreuzberg-hidden-courtyard.jpg",
-  },
-  {
-    name: "A hobbit house in Dahlem village",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Domäne Dahlem farm, 49, 14195",
-    },
-    _id: "dsfads4",
-    latitude: 52.458526,
-    longitude: 13.289297,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-november-2014/images/eiskeller-dahlem-berlin.jpg",
-  },
-];
 
 var options = {
   enableHighAccuracy: true,
@@ -83,7 +23,7 @@ var options = {
 function success(pos) {
   const latitude = pos.coords.latitude;
   const longitude = pos.coords.longitude;
-  console.log(latitude, longitude);
+  
 }
 function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -99,7 +39,20 @@ export default function Explore(props) {
     height: "37%",
     zoom: 10,
   });
-
+  const [places,setPlaces]=useState(
+    []
+  )
+  useEffect(()=>{
+   axios
+      .get('/places')
+      .then(response => {
+        console.log(response.data)
+      setPlaces(response.data)
+      })
+      .catch(err => {
+        console.log(err);
+      }) }
+  ,[])
   const settings = {
     autoplay: true,
     dots: false,
@@ -115,19 +68,20 @@ export default function Explore(props) {
   return (
     <div className="Explore">
       <Slider {...settings}>
-        {placePhotos.map((photo, i) => {
+{places.length?   places.map((photo, i) => {
           return (
             <div key={photo._id}>
               <div className="DescriptionPhoto">
                 <span>{photo.name}</span> <br />
                 <span>
-                  {photo.location.address} - {photo.location.city}
+                  {photo.country} - {photo.city}
                 </span>
               </div>
-              <img src={photo.img} width="100%" alt="" />
+              <img src={photo.imgPath} width="100%" alt="" />
             </div>
           );
-        })}
+        }):null}
+     
       </Slider>
       <h1>
         Hello &nbsp;
@@ -157,18 +111,18 @@ export default function Explore(props) {
           setViewport(viewport);
         }}
       >
-        {placePhotos.map((place) => (
-          <marker
+        {places.length?  places.map((place) => (
+          <Marker
             key={place._id}
             latitude={place.latitude}
             longitude={place.longitude}
           >
             <Link>
-              <img className="Marker" src={place.img} alt="" />
+              <img className="Marker" src={place.imgPath} alt="" />
             </Link>
-            console.log(place.latitude)
-          </marker>
-        ))}
+          
+          </Marker>
+        )):null}
       </ReactMapGl>
     </div>
   );
