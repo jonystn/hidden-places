@@ -3,18 +3,15 @@ const Schema = mongoose.Schema;
 
 const placesSchema = new Schema ({
 name: String,
-location: {
-  country: String,
-  city: String,
-  address: String
-},
+// country: String,
+// city: String,
+// address: String,
+latitude: Number,
+longitude: Number,
 
-geoloc: {
-  latitude: Number,
-  longitude: Number
-},
 comment: String,
-img: String,
+imgName: String,
+imgPath: String
 
 })
 

@@ -9,6 +9,9 @@ const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
 
+
+
+
 mongoose
 
   .connect("mongodb://localhost/hidden-places", {
@@ -79,7 +82,7 @@ app.use("/auth", require("./routes/auth"));
 
 app.use("/spotaphoto", require("./routes/places"));
 
-
+app.use("/", require("./routes/places"));
 
 
 module.exports = app;

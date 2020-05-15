@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./PlaceInfo.scss";
+// import React from "react";
+// import { Link } from "react-router-dom";
+// import "./PlaceInfo.scss";
 
 // import axios from "axios";
 
