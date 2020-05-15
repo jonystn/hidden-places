@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+#root {
+  position: relative;
+}
+
 // Global styles
 
 // colors
@@ -146,6 +150,7 @@ input:active {
   border-bottom: 1px solid #9eb85d;
   font-size: 1.5rem;
   padding-left: 40px;
+  box-shadow: 0 6px 6px -10px #9eb85d;
 }
 
 #password {
