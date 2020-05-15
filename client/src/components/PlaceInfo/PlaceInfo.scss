@@ -8,4 +8,106 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+
+  .Marker {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 3px 3px 3px #00000048;
+    border: 1px solid #ffffffe7;
+  }
+
+  @keyframes slide-up {
+    from {
+      margin-top: 100%;
+      height: 62%;
+    }
+
+    to {
+      margin-top: 0%;
+      height: 62%;
+    }
+  }
+
+  .PlaceInfoTab {
+    animation: 0.5s ease-in 0s 1 slide-up;
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    height: 62%;
+    padding: 30px 20px;
+    box-shadow: 0px -10px 20px #00000023;
+    border-radius: 40px 40px 0px 0px;
+    background-color: #ffffff;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    transition: opacity 0.5s, margin-top 2s, margin-bottom 2s;
+  }
+
+  .Rating i {
+    margin-right: 5px;
+  }
+
+  .PlaceInfoTab img {
+    height: 188px;
+    border-radius: 15px;
+    margin: 10px 0;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: 9999;
+  }
+
+  .Rating i {
+    font-size: 1.5rem;
+    filter: drop-shadow(0px 0px 8px #ffad4783);
+  }
+
+  .Favorite {
+    font-size: 1.9rem;
+    color: #d1d1cc;
+  }
+  .FavoriteActive {
+    font-size: 1.9rem;
+    color: #ff3f4f;
+    filter: drop-shadow(0px 0px 8px #ff3f4f91);
+  }
+
+  p {
+    margin: 5px 0;
+  }
+
+  .PlaceInfoTab > div {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .Map {
+    animation: 0.1s ease-in 0s 1 slide-up;
+  }
+
+  .Marker {
+    animation: 2s ease-in showMe;
+  }
+
+  @keyframes showMe {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  //hide mapboxlogo
+  div.mapboxgl-ctrl-bottom-left,
+  div.mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
 }

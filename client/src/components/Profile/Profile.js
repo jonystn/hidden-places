@@ -26,13 +26,15 @@ const Profile = (props) => {
       <p className="MediumText">jonathan@gmail.com {props.user.email}</p>
 
       <div>
-        <Link
-          to="/login"
-          onClick={() => handleLogout(props)}
-          className="PrimaryButton"
-        >
-          Sign out
-        </Link>
+        <div>
+          <Link
+            to="/login"
+            onClick={() => handleLogout(props)}
+            className="PrimaryButton"
+          >
+            Sign out
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -76,7 +76,7 @@
 
   .DescriptionPhoto {
     color: #ffffffe7;
-    text-shadow: #000000de 1px 1px 2px, black 1px 1px 6px;
+    text-shadow: #000000de 1px 1px 2px, #000000de 1px 1px 6px;
     text-align: right;
     border-radius: 40px 40px 0px 0px;
     font-weight: 600;
@@ -89,6 +89,12 @@
     font-weight: normal;
   }
 
+  //hide mapboxlogo
+  div.mapboxgl-ctrl-bottom-left,
+  div.mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+
   h1 {
     position: fixed;
     top: 0;
@@ -98,7 +104,6 @@
 
   .Map {
     position: fixed;
-    bottom: -10px;
   }
 
   .Marker {
@@ -111,9 +116,33 @@
     border: 3px solid #ffffffe7;
   }
 
-
-  div:nth-child(2) > div {
-    top: 10px;
+  .Marker {
+    animation: 2s ease-in showMe;
   }
 
+  @keyframes showMe {
+    from {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    to {
+      opacity: 1;
+      transform: scale(2);
+    }
+  }
+
+  .Map {
+    animation: 0.1s ease-in 0s 1 slide-up;
+  }
+  @keyframes slide-up {
+    from {
+      margin-top: 100%;
+      height: 62%;
+    }
+
+    to {
+      margin-top: 0%;
+      height: 62%;
+    }
+  }
 }

@@ -49,8 +49,14 @@ class App extends React.Component {
           )}
         />
         <>
+          <ProtectedRoute
+            exact
+            path="/place-info"
+            user={this.state.user}
+            component={PlaceInfo}
+          />
+
           <Route exact path="/explore-map-view" component={ExploreMapView} />
-          {/* <Route exact path='/place-info' component={PlaceInfo} /> */}
           <Route exact path="/spot-a-place" component={SpotAPlace} />
           <Route exact path="/favorites" component={Favorites} />
 

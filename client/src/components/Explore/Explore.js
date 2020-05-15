@@ -6,7 +6,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ReactMapGl, {Marker} from "react-map-gl";
+import ReactMapGl, { Marker, Popup } from "react-map-gl";
 import { set } from "mongoose";
 import axios from "axios";
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
@@ -36,7 +36,7 @@ export default function Explore(props) {
     latitude: 52.5196,
     longitude: 13.4069,
     width: "100%",
-    height: "37%",
+    height: "50%",
     zoom: 10,
   });
   const [places,setPlaces]=useState(
@@ -120,7 +120,6 @@ export default function Explore(props) {
             <Link>
               <img className="Marker" src={place.imgPath} alt="" />
             </Link>
-          
           </Marker>
         )):null}
       </ReactMapGl>
