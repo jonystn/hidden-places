@@ -8,4 +8,115 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+
+  //hide mapboxlogo
+  div.mapboxgl-ctrl-bottom-left,
+  div.mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+
+  .DragAndDrop {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: #ffffffb7;
+    z-index: 99999;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .Pin {
+    filter: drop-shadow(0 5px 6px #32323265);
+    cursor: pointer;
+  }
+
+  .Pin {
+    filter: drop-shadow(0 4px 5px #32323280);
+    position: relative;
+    top: 0;
+    transition: top ease-in 0.2s;
+  }
+
+  .Pin:active {
+    filter: drop-shadow(0 20px 10px #3232322d);
+    top: -10px;
+  }
+
+  input[type="file"] {
+    display: none;
+  }
+  .FileUpload {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    color: #9eb85d;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border-radius: 33px;
+    border: 2px solid #9eb85d;
+    height: 20px;
+    width: 100%;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .FilePreview {
+    margin: 10px 0;
+  }
+
+  .FileUploadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+
+  i {
+    margin-right: 10px;
+    font-size: 1.5rem;
+  }
+
+  .Form {
+    padding: 0 20px;
+  }
+
+  input {
+    border: 2px solid #9eb85d;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+    padding: 0 20px;
+    width: 100%;
+    margin-bottom: -2px;
+  }
+
+  .InputContainer {
+    display: flex;
+    flex-direction: unset;
+    padding: 0;
+  }
+
+  // input:active {
+  //   border: 2px solid #9eb85d;
+  //   border-radius: 33px;
+  //   // padding: 0;
+  // }
+  input:focus,
+  input:active {
+    color: #323232;
+    font-size: 1.2rem;
+  }
+
+  .PrimaryButton {
+    margin-bottom: 90px;
+  }
+
+  .TextBox {
+    width: 100%;
+    height: 115px;
+    margin-top: 10px;
+    border: 2px solid #9eb85d;
+    border-radius: 0 0 20px 20px;
+    // padding-top: 10px;
+  }
 }

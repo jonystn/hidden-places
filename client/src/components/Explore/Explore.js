@@ -49,6 +49,7 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
+  const [selectPlace, setSelectPlace] = useState(null);
   const settings = {
     autoplay: true,
     dots: false,
@@ -79,6 +80,12 @@ export default function Explore(props) {
               );
             })
           : null}
+        <div>
+          <img
+            src="http://res.cloudinary.com/dcminvnrd/image/upload/v1589581785/hidden-places/chinese-teahouse-berlin-marzahn.jpg.jpg"
+            alt=""
+          />
+        </div>
       </Slider>
       <h1>
         Hello &nbsp;
@@ -103,7 +110,7 @@ export default function Explore(props) {
         className="Map"
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jonystn/cka7g9pic00da1iqowalt6qgy"
+        mapStyle="mapbox://styles/jonystn/cka9m0am71i0t1iqf0as2j6on"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
@@ -115,7 +122,7 @@ export default function Explore(props) {
                 latitude={place.latitude}
                 longitude={place.longitude}
               >
-                <Link>
+                <Link to={`/place-info/${place._id}`}>
                   <img className="Marker" src={place.imgPath} alt="" />
                 </Link>
               </Marker>
