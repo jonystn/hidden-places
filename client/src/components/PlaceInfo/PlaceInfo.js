@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./PlaceInfo.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import ReactMapGl, { Marker, Popup } from "react-map-gl";
+import axios from "axios";
 
 const heart = <FontAwesomeIcon icon={faHeart} />;
 const star = <FontAwesomeIcon icon={faStar} style={{ color: "#F3B249" }} />;
@@ -86,13 +87,27 @@ export default function PlaceInfo(props) {
     zoom: 10,
   });
 
+  const [places, setPlaces] = useState([]);
+  useEffect(() => {
+    const placeId = props.match.params.id;
+    axios
+      .get(`/place-info/${placeId}`)
+      .then((response) => {
+        console.log(response.data);
+        setPlaces(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className="PlaceInfo">
       <ReactMapGl
         className="Map"
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jonystn/cka7g9pic00da1iqowalt6qgy"
+        mapStyle="mapbox://styles/jonystn/cka9m0am71i0t1iqf0as2j6on"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
@@ -109,6 +124,7 @@ export default function PlaceInfo(props) {
           </Marker>
         ))}
       </ReactMapGl>
+
       <div className="PlaceInfoTab">
         <span className="MediumTextBold">
           Chinese teahouse (Gärten der Welt)
@@ -132,7 +148,7 @@ export default function PlaceInfo(props) {
         <img
           className="Photo"
           src="http://www.secretcitytravel.com/berlin-september-2014/images/chinese-teahouse-berlin-marzahn.jpg"
-          alt={placePhotos.name}
+          alt=""
         />
       </div>
     </div>

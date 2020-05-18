@@ -156,3 +156,7 @@ input:active {
 #password {
   margin-bottom: 30px;
 }
+
+input:focus::placeholder {
+  color: transparent;
+}
