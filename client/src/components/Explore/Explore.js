@@ -9,10 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, Popup } from "react-map-gl";
 import { set } from "mongoose";
 import axios from "axios";
-<<<<<<< HEAD
 
-=======
->>>>>>> 5c6a048146aa821bf228fc79f1d0ddb84988a157
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
 
 var options = {
@@ -52,7 +49,6 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
-  const [selectPlace, setSelectPlace] = useState(null);
   const settings = {
     autoplay: true,
     dots: false,
@@ -113,12 +109,11 @@ export default function Explore(props) {
         className="Map"
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jonystn/cka9m0am71i0t1iqf0as2j6on"
+        mapStyle="mapbox://styles/jonystn/cka7g9pic00da1iqowalt6qgy"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
       >
-<<<<<<< HEAD
         {places.length
           ? places.map((place) => (
               <Marker
@@ -132,19 +127,6 @@ export default function Explore(props) {
               </Marker>
             ))
           : null}
-=======
-        {places.length?  places.map((place) => (
-          <Marker
-            key={place._id}
-            latitude={place.latitude}
-            longitude={place.longitude}
-          >
-            <Link>
-              <img className="Marker" src={place.imgPath} alt="" />
-            </Link>
-          </Marker>
-        )):null}
->>>>>>> 5c6a048146aa821bf228fc79f1d0ddb84988a157
       </ReactMapGl>
     </div>
   );

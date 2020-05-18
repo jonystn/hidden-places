@@ -6,7 +6,6 @@ import axios from "axios";
 import Navbar from "./components/Navbar/Navbar";
 import StartPage from "./components/StartPage/StartPage";
 import Explore from "./components/Explore/Explore";
-import ExploreMapView from "./components/ExploreMapView/ExploreMapView";
 import Favorites from "./components/Favorites/Favorites";
 import Login from "./components/Login/Login";
 import PlaceInfo from "./components/PlaceInfo/PlaceInfo";
