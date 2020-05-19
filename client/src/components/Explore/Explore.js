@@ -7,7 +7,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, GeolocateControl } from "react-map-gl";
-// import Geocoder from "react-mapbox-gl-geocoder";
+import Geocoder from 'react-mapbox-gl-geocoder';
+
 import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
@@ -34,6 +35,9 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
+
+
+
   const settings = {
     autoplay: true,
     dots: false,
