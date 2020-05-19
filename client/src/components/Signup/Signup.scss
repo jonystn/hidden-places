@@ -1,14 +1,19 @@
 .Signup {
   margin: 0 auto;
-  padding: 0 20px;
   max-width: 500px;
   max-height: 823px;
   height: 100vh;
   background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+
+  .Container {
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    align-content: space-around;
+  }
 
   .MediumText {
     text-align: center;
@@ -17,8 +22,28 @@
   .Hyperlink {
     margin: 30px 0;
   }
-
-  div:nth-child(4) {
-    padding-bottom: 30px;
-  }
 }
+
+// margin: 0 auto;
+// padding: 0 20px;
+// max-width: 500px;
+// max-height: 823px;
+// height: 100vh;
+// background-color: white;
+// display: flex;
+// justify-content: center;
+// align-items: center;
+// flex-wrap: wrap;
+
+// .MediumText {
+//   text-align: center;
+// }
+
+// .Hyperlink {
+//   margin: 30px 0;
+// }
+
+// div:nth-child(4) {
+//   padding-bottom: 30px;
+// }
+// }

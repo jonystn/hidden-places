@@ -1,5 +1,4 @@
 import React from "react";
-import { render } from "react-dom";
 import "./SpotAPlace.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";

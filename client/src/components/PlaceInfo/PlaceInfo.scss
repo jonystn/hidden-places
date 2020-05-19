@@ -18,6 +18,13 @@
     box-shadow: 3px 3px 3px #00000048;
     border: 3px solid #ffffff;
     padding: 0;
+    transition: 0.6s ease-in-out;
+  }
+
+  .Marker:hover {
+    transform: scale(1.5);
+    transition: 0.6s ease-in-out;
+    box-shadow: 3px 3px 10px #00000048;
   }
 
   .Marker {
@@ -39,11 +46,13 @@
     from {
       margin-top: 62px;
       height: 0%;
+      opacity: -1;
     }
 
     to {
       margin-top: 0px;
       height: 62%;
+      opacity: 1;
     }
   }
 
@@ -62,6 +71,7 @@
     left: 0;
     margin: 0 auto;
     transition: opacity 0.5s, margin-top 2s, margin-bottom 2s;
+    overflow: scroll;
   }
 
   .MediumTextBold {
@@ -90,11 +100,25 @@
   .Favorite {
     font-size: 1.9rem;
     color: #d1d1cc;
+    transition: 0.6s ease-in-out;
   }
+
   .FavoriteActive {
     font-size: 1.9rem;
     color: #ff3f4f;
-    filter: drop-shadow(0px 0px 8px #ff3f4f91);
+    filter: drop-shadow(0px 0px 10px #ff3f4fbd);
+    transition: 0.6s ease-in-out;
+  }
+  .Favorite:hover {
+    font-size: 1.9rem;
+    color: #ff3f4f;
+    filter: drop-shadow(0px 0px 5px #ff3f4f91);
+    transition: 0.6s ease-in-out;
+  }
+
+  button {
+    border: none;
+    outline: none;
   }
 
   p {
@@ -102,7 +126,7 @@
   }
 
   .PlaceInfoTab > div {
-    margin: 15px 0;
+    margin: 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -116,5 +140,25 @@
   div.mapboxgl-ctrl-bottom-left,
   div.mapboxgl-ctrl-bottom-right {
     display: none;
+  }
+
+  .Photo {
+    margin: 10px 0 110px 0;
+  }
+
+  .BackBtn {
+    font-size: 2rem;
+    background-color: white;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    box-shadow: 3px 3px 15px #00000048;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.85;
+    z-index: 5;
   }
 }

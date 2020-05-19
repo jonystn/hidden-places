@@ -38,11 +38,14 @@
   .NavLinkActive > span {
     color: #9eb85d;
     filter: drop-shadow(0px 0px 15px #79a73367);
+    transition: 0.6s ease-in-out;
   }
 
+  .NavLinkActive:hover > i,
   .NavLink:hover > i > svg > path,
   .NavLink:hover > span {
     color: #9eb85d !important;
+    filter: drop-shadow(0px 0px 4px #79a73367);
     transition: 0.6s ease-in-out;
   }
 }

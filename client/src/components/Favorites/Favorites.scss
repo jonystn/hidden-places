@@ -8,4 +8,49 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  align-content: flex-start;
+  overflow: scroll;
+
+  .FavItem > div {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px 0;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 0 20px #00000023;
+  }
+
+  .FavItem:last-of-type {
+    margin-bottom: 110px;
+  }
+
+  .Rating i {
+    margin-right: 5px;
+  }
+
+  img {
+    height: 235px;
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px 0;
+    padding: 0;
+    object-fit: cover;
+    object-position: center;
+    z-index: 9999;
+  }
+
+  .Rating i {
+    font-size: 1.5rem;
+    filter: drop-shadow(0px 0px 8px #ffad4783);
+  }
+
+  .ContainerRating {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .DeleteFavorite {
+    font-size: 1.5rem;
+  }
 }

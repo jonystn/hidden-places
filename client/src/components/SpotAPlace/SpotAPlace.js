@@ -6,13 +6,6 @@ import "./SpotAPlace.scss";
 import Pin from "./Pin";
 import FileInput from "./FileInput";
 
-const navStyle = {
-  position: "absolute",
-  top: 0,
-  left: 0,
-  padding: "10px",
-};
-
 export default class App extends Component {
   constructor(props) {
     super(props);

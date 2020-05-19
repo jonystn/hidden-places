@@ -2,11 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Profile.scss";
 import { logout } from "../../services/auth";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
-const user = <FontAwesomeIcon icon={faUser} style={{ color: "#9eb85d" }} />;
-const mail = <FontAwesomeIcon icon={faEnvelope} style={{ color: "#9eb85d" }} />;
 
 const handleLogout = (props) => {
   logout().then(() => {

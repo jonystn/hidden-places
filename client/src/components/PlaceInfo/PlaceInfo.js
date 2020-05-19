@@ -1,106 +1,74 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./PlaceInfo.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import ReactMapGl, { Marker, Popup } from "react-map-gl";
+import {
+  faHeart,
+  faStar,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import ReactMapGl, { Marker } from "react-map-gl";
 import axios from "axios";
 
 const heart = <FontAwesomeIcon icon={faHeart} />;
 const star = <FontAwesomeIcon icon={faStar} style={{ color: "#F3B249" }} />;
-
-const placePhotos = [
-  {
-    name: "Chinese teahouse (Gärten der Welt)",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Eisenacher Strasse 99, 12685",
-    },
-    _id: "dsfads1",
-    latitude: 52.53973,
-    longitude: 13.579218,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-september-2014/images/chinese-teahouse-berlin-marzahn.jpg",
-  },
-  {
-    name: "A French railway station",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Buddestraße 2-4, 13507",
-    },
-    _id: "dsfads2",
-    latitude: 52.588821,
-    longitude: 13.288896,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-june-2015/images/gare-francaise-french-railway-station-tegel-berlin.jpg",
-  },
-  {
-    name: "Beautiful hidden courtyard",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Lindenstraße 20-25, 10969",
-    },
-    _id: "dsfads3",
-    latitude: 52.503837,
-    longitude: 13.397246,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-may-2014/images/kreuzberg-hidden-courtyard.jpg",
-  },
-  {
-    name: "A hobbit house in Dahlem village",
-    location: {
-      country: "Germany",
-      city: "Berlin",
-      address: "Domäne Dahlem farm, 49, 14195",
-    },
-    _id: "dsfads4",
-    latitude: 52.458526,
-    longitude: 13.289297,
-
-    comment: "",
-    img:
-      "http://www.secretcitytravel.com/berlin-november-2014/images/eiskeller-dahlem-berlin.jpg",
-  },
-];
-
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
+const arrow = (
+  <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#9eb85d" }} />
+);
 
 export default function PlaceInfo(props) {
+  const history = useHistory();
+
   const [viewport, setViewport] = useState({
-    latitude: 52.5196,
-    longitude: 13.4069,
-    width: "100%",
-    height: "37%",
-    zoom: 10,
+    // latitude: 52.5196,
+    // longitude: 13.4069,
+    // width: "100%",
+    // height: "37%",
+    // zoom: 10,
   });
+
+  const [favorite, setFavorite] = useState(false);
+  const handleFavorite = () => {
+    //console.log(props.match.params.id);
+    const newFavorite = !favorite;
+    axios
+      .put(`/user/favorites/${props.match.params.id}`)
+      .then((response) => {
+        console.log(response.data, "USER");
+        setFavorite(newFavorite);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const [places, setPlaces] = useState([]);
   useEffect(() => {
     const placeId = props.match.params.id;
+    let findFavorite = props.user.favorites.find((favorite) => {
+      return favorite == props.match.params.id;
+    });
+    let isFavorite = !!findFavorite;
+    setFavorite(isFavorite);
     axios
       .get(`/place-info/${placeId}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPlaces(response.data);
+        setViewport({
+          latitude: response.data.latitude,
+          longitude: response.data.longitude,
+          width: "100%",
+          height: "37%",
+          zoom: 12,
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
+  if (places.length < 1) return <div />;
   return (
     <div className="PlaceInfo">
       <ReactMapGl
@@ -112,23 +80,18 @@ export default function PlaceInfo(props) {
           setViewport(viewport);
         }}
       >
-        {placePhotos.map((place) => (
-          <Marker
-            key={place._id}
-            latitude={place.latitude}
-            longitude={place.longitude}
-          >
-            <Link>
-              <img className="Marker" src={place.img} alt="" />
-            </Link>
-          </Marker>
-        ))}
+        <Link onClick={() => history.goBack()}>
+          <div className="BackBtn">{arrow}</div>
+        </Link>
+        <Marker latitude={places.latitude} longitude={places.longitude}>
+          <Link>
+            <img className="Marker" src={places.imgPath} alt="" />
+          </Link>
+        </Marker>
       </ReactMapGl>
 
       <div className="PlaceInfoTab">
-        <span className="MediumTextBold">
-          Chinese teahouse (Gärten der Welt)
-        </span>
+        <span className="MediumTextBold">{places.name}</span>
 
         <div>
           <div className="Rating">
@@ -138,18 +101,13 @@ export default function PlaceInfo(props) {
             <i>{star}</i>
             <i>{star}</i>
           </div>
-          <i className="FavoriteActive">{heart}</i>
+          <button type="button" onClick={handleFavorite}>
+            <i className={favorite ? "FavoriteActive" : "Favorite"}>{heart}</i>
+          </button>
         </div>
 
-        <p className="MediumText">
-          Designed by experts in Beijing, then built from materials shipped all
-          the way from China, is authentic down to the tiniest detail.
-        </p>
-        <img
-          className="Photo"
-          src="http://www.secretcitytravel.com/berlin-september-2014/images/chinese-teahouse-berlin-marzahn.jpg"
-          alt=""
-        />
+        <p className="MediumText">{places.comment}</p>
+        <img className="Photo" src={places.imgPath} alt="" />
       </div>
     </div>
   );
