@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, Popup } from "react-map-gl";
+import Geocoder from 'react-mapbox-gl-geocoder';
 import { set } from "mongoose";
 import axios from "axios";
 
@@ -49,6 +50,9 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
+
+
+
   const settings = {
     autoplay: true,
     dots: false,
@@ -105,6 +109,7 @@ export default function Explore(props) {
           />
         </div>
       </form>
+      
       <ReactMapGl
         className="Map"
         {...viewport}
