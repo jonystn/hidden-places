@@ -59,7 +59,7 @@ router.get("/places", (req, res) => {
     });
 });
 
-router.get("/placeinfo/:id", (req, res) => {
+router.get("/place-info/:id", (req, res) => {
   Places.findById(req.params.id)
     .then((places) => {
       if (!places) {
