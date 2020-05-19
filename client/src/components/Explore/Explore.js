@@ -7,11 +7,16 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, GeolocateControl } from "react-map-gl";
-// import Geocoder from "react-mapbox-gl-geocoder";
+import Geocoder from 'react-mapbox-gl-geocoder';
+
 import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d80a5c4c59016e2c3ca89f67485e00527df7f5fa
 export default function Explore(props) {
   const [viewport, setViewport] = useState({
     latitude: 52.5196,
@@ -33,6 +38,9 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
+
+
+
   const settings = {
     autoplay: true,
     dots: false,
