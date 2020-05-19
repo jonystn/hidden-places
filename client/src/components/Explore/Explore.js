@@ -12,26 +12,6 @@ import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
 
-<<<<<<< HEAD
-=======
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
-//getting the position
-function success(pos) {
-  const latitude = pos.coords.latitude;
-  const longitude = pos.coords.longitude;
-}
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-navigator.geolocation.getCurrentPosition(success, error, options);
-
-
->>>>>>> master
 export default function Explore(props) {
   const [viewport, setViewport] = useState({
     latitude: 52.5196,
@@ -101,7 +81,7 @@ export default function Explore(props) {
         {props.user.username.charAt(0).toUpperCase() +
           props.user.username.slice(1)}
       </h1>
-      <form className="Form" >
+      <form className="Form">
         <div className="InputContainer">
           <i>{search}</i>
           <label htmlFor="name"></label>
