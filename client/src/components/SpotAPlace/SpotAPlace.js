@@ -1,10 +1,14 @@
 import * as React from "react";
 import { Component } from "react";
+import { Redirect } from 'react-router-dom';
 import { render } from "react-dom";
 import MapGL, { Marker } from "react-map-gl";
 import "./SpotAPlace.scss";
 import Pin from "./Pin";
 import FileInput from "./FileInput";
+import axios from "axios";
+
+
 
 export default class App extends Component {
   constructor(props) {
@@ -22,8 +26,51 @@ export default class App extends Component {
         longitude: 13.4069,
       },
       events: {},
+      comment: "max 180 characters", 
+      name: "Place Name",
+      file: "",
     };
   }
+
+    handleChange = event =>{
+      const name = event.target.name;
+      const value = event.target.value;
+      this.setState({
+        [name]: value
+      });
+    }
+
+    handleFile = file => {
+      console.log("FILE", file);
+      this.setState({
+        file: file,
+      });
+    }
+
+    handleSubmit = event => {
+      event.preventDefault();
+      console.log("HERE", this.state.file)
+      axios.post("/spotaphoto/places", {
+        comment: this.state.comment,
+        name: this.state.name,
+        latitude: this.state.marker.latitude,
+        longitude: this.state.marker.longitude,
+        file: this.state.file,
+      })
+      .then ((res)=>{
+        console.log(res.data);
+        this.props.history.push(`/place-info/${res.data._id}`)
+        //<Redirect to={`/place-info/${res.data._id}`} />
+        this.setState({
+          name: " ",
+          comment: " ",
+          file: " ",
+
+        });
+      }) 
+      
+    }
+
 
   _updateViewport = (viewport) => {
     this.setState({ viewport });
@@ -85,17 +132,27 @@ export default class App extends Component {
             <Pin size={20} />
           </Marker>
         </MapGL>
-        <form className="Form" action="">
+        <form className="Form" onSubmit={this.handleSubmit} enctype="multipart/form-data" >
           <div className="InputContainer">
             <label htmlFor="name"></label>
-            <input placeholder="Place name" type="name" name="name" required />
+            <input placeholder="Place name" 
+            type="text"
+            name="name"
+            id = "name"
+            value ={this.state.name}
+            onChange = {this.handleChange}
+            required />
           </div>
           <textarea
             className="TextBox"
-            value="{this.state.value}"
-            onChange="{this.handleChange}"
+            type= "text"
+            name = "comment"
+            id = "comment"
+            value={this.state.comment}
+            maxLength = "180"
+            onChange={this.handleChange}
           />
-          <FileInput />
+          <FileInput handleFile={this.handleFile} />
           <button type="submit" className="PrimaryButton">
             Upload
           </button>

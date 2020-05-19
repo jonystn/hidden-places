@@ -12,6 +12,7 @@ import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
 
+
 export default function Explore(props) {
   const [viewport, setViewport] = useState({
     latitude: 52.5196,
@@ -24,7 +25,7 @@ export default function Explore(props) {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
     axios
-      .get("/places")
+      .get("/spotaphoto/places")
       .then((response) => {
         console.log(response.data);
         setPlaces(response.data);
@@ -81,7 +82,7 @@ export default function Explore(props) {
         {props.user.username.charAt(0).toUpperCase() +
           props.user.username.slice(1)}
       </h1>
-      <form className="Form" onSubmit="">
+      <form className="Form" >
         <div className="InputContainer">
           <i>{search}</i>
           <label htmlFor="name"></label>
