@@ -6,28 +6,12 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ReactMapGl, { Marker, Popup } from "react-map-gl";
+import ReactMapGl, { Marker, GeolocateControl } from "react-map-gl";
 import Geocoder from 'react-mapbox-gl-geocoder';
-import { set } from "mongoose";
+
 import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
-
-var options = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0,
-};
-
-//getting the position
-function success(pos) {
-  const latitude = pos.coords.latitude;
-  const longitude = pos.coords.longitude;
-}
-function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-}
-navigator.geolocation.getCurrentPosition(success, error, options);
 
 
 export default function Explore(props) {
@@ -38,6 +22,7 @@ export default function Explore(props) {
     height: "50%",
     zoom: 10,
   });
+
   const [places, setPlaces] = useState([]);
   useEffect(() => {
     axios
@@ -69,7 +54,7 @@ export default function Explore(props) {
     <div className="Explore">
       <Slider {...settings}>
         {places.length
-          ? places.map((photo, i) => {
+          ? places.slice(1).map((photo, i) => {
               return (
                 <div key={photo._id}>
                   <div className="DescriptionPhoto">
@@ -84,10 +69,16 @@ export default function Explore(props) {
             })
           : null}
         <div>
-          <img
-            src="http://res.cloudinary.com/dcminvnrd/image/upload/v1589581785/hidden-places/chinese-teahouse-berlin-marzahn.jpg.jpg"
-            alt=""
-          />
+          <div>
+            <div className="DescriptionPhoto">
+              <span>A French railway station</span> <br />
+              <span>Germany - Berlin</span>
+            </div>
+            <img
+              src="http://res.cloudinary.com/dcminvnrd/image/upload/v1589581947/hidden-places/gare-francaise-french-railway-station-tegel-berlin.jpg.jpg"
+              alt=""
+            />
+          </div>
         </div>
       </Slider>
       <h1>
@@ -109,7 +100,7 @@ export default function Explore(props) {
           />
         </div>
       </form>
-      
+
       <ReactMapGl
         className="Map"
         {...viewport}

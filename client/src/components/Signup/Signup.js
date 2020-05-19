@@ -55,61 +55,63 @@ export default class Signup extends Component {
 
     return (
       <div className="Signup">
-        <h1>Create your free account!</h1>
+        <div className="Container">
+          <h1>Create your free account!</h1>
 
-        <Link to="/login">
-          <span className="MediumText">Do you already have an account?</span>{" "}
-          <span className="Hyperlink">Sign in!</span>
-        </Link>
+          <Link to="/login">
+            <span className="MediumText">Do you already have an account?</span>{" "}
+            <span className="Hyperlink">Sign in!</span>
+          </Link>
 
-        <form className="Form" onSubmit={this.handleSubmit}>
-          <div className="InputContainer">
-            <i>{user}</i>
-            <label htmlFor="username"></label>
-            <input
-              placeholder="Username"
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleChange}
-              id="username"
-              autocomplete="off"
-              required
-            />
-          </div>
+          <form className="Form" onSubmit={this.handleSubmit}>
+            <div className="InputContainer">
+              <i>{user}</i>
+              <label htmlFor="username"></label>
+              <input
+                placeholder="Username"
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+                autocomplete="off"
+                required
+              />
+            </div>
 
-          <div className="InputContainer">
-            <i>{mail}</i>
-            <label htmlFor="email"></label>
-            <input placeholder="E-mail" type="email" name="email" required />
-          </div>
+            <div className="InputContainer">
+              <i>{mail}</i>
+              <label htmlFor="email"></label>
+              <input placeholder="E-mail" type="email" name="email" required />
+            </div>
 
-          <div className="InputContainer">
-            <i>{lock}</i>
-            <label htmlFor="password"></label>
-            <input
-              placeholder="Password"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              id="password"
-              required
-            />
-          </div>
-          <div>
-            {this.state.message && <span>{this.state.message}</span>}
-            <i>{check}</i>{" "}
-            <span className="SmallText">Minimum 6 characters</span>
-          </div>
-          <button type="submit" className="PrimaryButton">
-            Sing up
-          </button>
-        </form>
+            <div className="InputContainer">
+              <i>{lock}</i>
+              <label htmlFor="password"></label>
+              <input
+                placeholder="Password"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+                required
+              />
+            </div>
+            <div>
+              {this.state.message && <span>{this.state.message}</span>}
+              <i>{check}</i>{" "}
+              <span className="SmallText">Minimum 6 characters</span>
+            </div>
+            <button type="submit" className="PrimaryButton">
+              Sing up
+            </button>
+          </form>
 
-        <span className="MediumText">or continue with</span>
-        <img src="../images/facebook.svg" alt="Facebook logo" />
-        <img src="../images/google.svg" alt="Google logo" />
+          <span className="MediumText">or continue with</span>
+          <img src="../images/facebook.svg" alt="Facebook logo" />
+          <img src="../images/google.svg" alt="Google logo" />
+        </div>
       </div>
     );
   }

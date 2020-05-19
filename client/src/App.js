@@ -2,7 +2,6 @@ import React from "react";
 import "./App.scss";
 import "./components/Navbar/Navbar";
 import { Switch, Route } from "react-router-dom";
-import axios from "axios";
 import Navbar from "./components/Navbar/Navbar";
 import StartPage from "./components/StartPage/StartPage";
 import Explore from "./components/Explore/Explore";

@@ -12,8 +12,6 @@ const pinStyle = {
 
 export default class Pin extends PureComponent {
   render() {
-    const { size = 30 } = this.props;
-
     return (
       <svg
         className="Pin"
