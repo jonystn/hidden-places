@@ -11,7 +11,7 @@ const path = require("path");
 
 mongoose
 
-  .connect("mongodb://localhost/hidden-places", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/hidden-places", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -66,8 +66,7 @@ app.use(
   })
 );
 
-
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
 // default value for title local
@@ -78,6 +77,9 @@ app.use("/auth", require("./routes/auth"));
 
 app.use("/spotaphoto", require("./routes/places"));
 
-
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/client/build/index.html");
+});
 
 module.exports = app;
