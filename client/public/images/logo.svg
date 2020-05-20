@@ -2,7 +2,7 @@
   id="Layer_1"
   data-name="Layer 1"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 233.1 259.52"
+  viewBox="0 0 234 260"
 >
   <defs>
     <style>
@@ -10,7 +10,7 @@
         isolation: isolate;
       }
       .cls-2 {
-        fill: #9eb85d;
+        fill: #00c4cc;
       }
       .cls-3 {
         fill: #333;
@@ -22,7 +22,7 @@
         fill: #d1d1cc;
       }
       .cls-6 {
-        fill: #78a733;
+        fill: #33333331;
       }
     </style>
   </defs>

@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 
-const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#9eb85d" }} />;
-const user = <FontAwesomeIcon icon={faUser} style={{ color: "#9eb85d" }} />;
+const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#00C4CC" }} />;
+const user = <FontAwesomeIcon icon={faUser} style={{ color: "#00C4CC" }} />;
 
 export default class Login extends Component {
   state = {
@@ -87,12 +87,13 @@ export default class Login extends Component {
               />
             </div>
 
+            <div className="Message">
+              &nbsp;
+              {this.state.message && <span>{this.state.message}</span>}
+            </div>
             <button type="submit" className="PrimaryButton">
               Sing in
             </button>
-            {this.state.message && (
-              <span variant="danger">{this.state.message}</span>
-            )}
           </form>
 
           <span className="MediumText">or continue with</span>

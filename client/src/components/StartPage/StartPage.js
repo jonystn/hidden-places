@@ -13,12 +13,14 @@ const StartPage = (props) => {
         sightseeing. In this App, you can spot and find those places and have an
         amazing experience.
       </p>
-      <Link to="/login" className="PrimaryButton">
-        Sign in
-      </Link>
-      <Link to="/signup" className="SecondaryButton">
-        Create an account
-      </Link>
+      <div className="Container">
+        <Link to="/login" className="PrimaryButton">
+          Sign in
+        </Link>
+        <Link to="/signup" className="SecondaryButton">
+          Create an account
+        </Link>
+      </div>
     </div>
   );
 };

@@ -7,12 +7,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, GeolocateControl } from "react-map-gl";
-import Geocoder from 'react-mapbox-gl-geocoder';
+import Geocoder from "react-mapbox-gl-geocoder";
 
 import axios from "axios";
 
-const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#9eb85d" }} />;
-
+const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#00C4CC" }} />;
 
 export default function Explore(props) {
   const [viewport, setViewport] = useState({
@@ -35,8 +34,6 @@ export default function Explore(props) {
         console.log(err);
       });
   }, []);
-
-
 
   const settings = {
     autoplay: true,
@@ -86,7 +83,7 @@ export default function Explore(props) {
         {props.user.username.charAt(0).toUpperCase() +
           props.user.username.slice(1)}
       </h1>
-      <form className="Form" >
+      <form className="Form">
         <div className="InputContainer">
           <i>{search}</i>
           <label htmlFor="name"></label>
@@ -105,7 +102,7 @@ export default function Explore(props) {
         className="Map"
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jonystn/cka7g9pic00da1iqowalt6qgy"
+        mapStyle="mapbox://styles/jonystn/ckaedf2980f0g1ip7h8bdn246"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}

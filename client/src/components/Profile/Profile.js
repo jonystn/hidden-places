@@ -18,7 +18,7 @@ const Profile = (props) => {
           props.user.username.slice(1)}
       </h1>
       <span>E-mail:</span>
-      <p className="MediumText">jonathan@gmail.com {props.user.email}</p>
+      <p className="MediumText">{props.user.email}</p>
 
       <div>
         <div>
