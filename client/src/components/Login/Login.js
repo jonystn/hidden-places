@@ -5,6 +5,7 @@ import "./Login.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import Facebook from "../Facebook"
 
 const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#00C4CC" }} />;
 const user = <FontAwesomeIcon icon={faUser} style={{ color: "#00C4CC" }} />;
@@ -97,6 +98,7 @@ export default class Login extends Component {
           </form>
 
           <span className="MediumText">or continue with</span>
+          {/* <Facebook /> ---- needs to be finished*/}
           <img src="../images/facebook.svg" alt="Facebook logo" />
           <img src="../images/google.svg" alt="Google logo" />
         </div>
