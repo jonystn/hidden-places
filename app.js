@@ -76,7 +76,6 @@ app.locals.title = "Hidden Places";
 app.use("/auth", require("./routes/auth"));
 
 app.use("/spotaphoto", require("./routes/places"));
-
 app.use("/", require("./routes/places"));
 app.use("/user", require("./routes/user"));
 
