@@ -76,6 +76,8 @@ app.locals.title = "Hidden Places";
 app.use("/auth", require("./routes/auth"));
 
 app.use("/spotaphoto", require("./routes/places"));
+app.use("/", require("./routes/places"));
+app.use("/user", require("./routes/user"));
 
 app.use((req, res) => {
   // If no routes match, send them the React HTML.

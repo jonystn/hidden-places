@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 
 router.post("/signup", (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
 
   if (!password || password.length < 6) {
     return res
@@ -27,18 +27,20 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync();
       const hash = bcrypt.hashSync(password, salt);
 
-      return User.create({ username: username, password: hash }).then(
-        (dbUser) => {
-          req.login(dbUser, (err) => {
-            if (err) {
-              return res
-                .status(500)
-                .json({ message: "Error while attempting to login" });
-            }
-            res.json(dbUser);
-          });
-        }
-      );
+      return User.create({
+        username: username,
+        password: hash,
+        email: email,
+      }).then((dbUser) => {
+        req.login(dbUser, (err) => {
+          if (err) {
+            return res
+              .status(500)
+              .json({ message: "Error while attempting to login" });
+          }
+          res.json(dbUser);
+        });
+      });
     })
     .catch((err) => {
       res.json(err);
@@ -74,5 +76,22 @@ router.delete("/logout", (req, res) => {
 router.get("/loggedin", (req, res) => {
   res.json(req.user);
 });
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email",
+    ],
+  })
+);
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "/explorer",
+    failureRedirect: "/login",
+  })
+);
 
 module.exports = router;
