@@ -11,7 +11,7 @@ const path = require("path");
 
 mongoose
 
-  .connect("mongodb://localhost/hidden-places", {
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/hidden-places", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
