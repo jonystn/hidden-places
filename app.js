@@ -66,7 +66,6 @@ app.use(
   })
 );
 
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 
@@ -78,6 +77,7 @@ app.use("/auth", require("./routes/auth"));
 
 app.use("/spotaphoto", require("./routes/places"));
 
-
+app.use("/", require("./routes/places"));
+app.use("/user", require("./routes/user"));
 
 module.exports = app;
