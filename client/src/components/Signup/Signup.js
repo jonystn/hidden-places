@@ -4,9 +4,11 @@ import { Link, Redirect } from "react-router-dom";
 import "./Signup.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+
 const mail = <FontAwesomeIcon icon={faEnvelope} style={{ color: "#00C4CC" }} />;
 const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#00C4CC" }} />;
 const user = <FontAwesomeIcon icon={faUser} style={{ color: "#00C4CC" }} />;
+
 
 export default class Signup extends Component {
   state = {
@@ -110,6 +112,7 @@ export default class Signup extends Component {
           </form>
 
           <span className="MediumText">or continue with</span>
+          
           <img src="../images/facebook.svg" alt="Facebook logo" />
           <img src="../images/google.svg" alt="Google logo" />
         </div>

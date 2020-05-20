@@ -15,15 +15,28 @@ const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#00C4CC" }} />;
 
 export default function Explore(props) {
   const [viewport, setViewport] = useState({
-    latitude: 52.5196,
-    longitude: 13.4069,
-    width: "100%",
-    height: "50%",
-    zoom: 10,
+   
   });
+
+
+
+const onSelected =(viewport) => {
+  console.log(viewport)
+  setViewport(viewport)
+}
+
 
   const [places, setPlaces] = useState([]);
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(res => {
+      setViewport({
+        latitude: res.coords.latitude,
+        longitude: res.coords.longitude,
+        width: "100%",
+        height: "50%",
+        zoom: 10,
+      })
+    })
     axios
       .get("/spotaphoto/places")
       .then((response) => {
@@ -83,7 +96,7 @@ export default function Explore(props) {
         {props.user.username.charAt(0).toUpperCase() +
           props.user.username.slice(1)}
       </h1>
-      <form className="Form">
+      {/* <form className="Form">
         <div className="InputContainer">
           <i>{search}</i>
           <label htmlFor="name"></label>
@@ -96,8 +109,11 @@ export default function Explore(props) {
             id="search"
           />
         </div>
-      </form>
-
+      </form> */}
+      <Geocoder
+    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} onSelected={onSelected} viewport={viewport} hideOnSelect={true}
+    
+/>
       <ReactMapGl
         className="Map"
         {...viewport}
@@ -121,6 +137,7 @@ export default function Explore(props) {
             ))
           : null}
       </ReactMapGl>
+      
     </div>
   );
 }
