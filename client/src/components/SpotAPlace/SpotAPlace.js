@@ -104,30 +104,6 @@ export default class App extends Component {
 
     return (
       <div className="SpotAPlace">
-        <MapGL
-          {...viewport}
-          width="100%"
-          height="40%"
-          mapStyle="mapbox://styles/jonystn/cka9m0am71i0t1iqf0as2j6on"
-          onViewportChange={this._updateViewport}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        >
-          <span className="DragAndDrop MediumTextBold">
-            Drag and drop the pin to spot a hidden place
-          </span>
-          <Marker
-            longitude={marker.longitude}
-            latitude={marker.latitude}
-            offsetTop={-20}
-            offsetLeft={-10}
-            draggable
-            onDragStart={this._onMarkerDragStart}
-            onDrag={this._onMarkerDrag}
-            onDragEnd={this._onMarkerDragEnd}
-          >
-            <Pin size={20} />
-          </Marker>
-        </MapGL>
         <form
           className="Form"
           onSubmit={this.handleSubmit}
@@ -157,10 +133,35 @@ export default class App extends Component {
             onChange={this.handleChange}
           />
           <FileInput handleFile={this.handleFile} />
+
           <button type="submit" className="PrimaryButton">
-            Upload
+            Post a place
           </button>
         </form>
+        <MapGL
+          {...viewport}
+          width="100%"
+          height="50%"
+          mapStyle="mapbox://styles/jonystn/ckaedf2980f0g1ip7h8bdn246"
+          onViewportChange={this._updateViewport}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        >
+          <span className="DragAndDrop MediumTextBold">
+            Drag and drop the pin to spot a hidden place
+          </span>
+          <Marker
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            offsetTop={-20}
+            offsetLeft={-10}
+            draggable
+            onDragStart={this._onMarkerDragStart}
+            onDrag={this._onMarkerDrag}
+            onDragEnd={this._onMarkerDragEnd}
+          >
+            <Pin size={20} />
+          </Marker>
+        </MapGL>
       </div>
     );
   }

@@ -11,9 +11,9 @@ import ReactMapGl, { Marker } from "react-map-gl";
 import axios from "axios";
 
 const heart = <FontAwesomeIcon icon={faHeart} />;
-const star = <FontAwesomeIcon icon={faStar} style={{ color: "#F3B249" }} />;
+const star = <FontAwesomeIcon icon={faStar} style={{ color: "#ffad14" }} />;
 const arrow = (
-  <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#9eb85d" }} />
+  <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#00C4CC" }} />
 );
 
 export default function PlaceInfo(props) {
@@ -46,7 +46,7 @@ export default function PlaceInfo(props) {
   useEffect(() => {
     const placeId = props.match.params.id;
     let findFavorite = props.user.favorites.find((favorite) => {
-      return favorite == props.match.params.id;
+      return favorite === props.match.params.id;
     });
     let isFavorite = !!findFavorite;
     setFavorite(isFavorite);
@@ -75,7 +75,7 @@ export default function PlaceInfo(props) {
         className="Map"
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/jonystn/cka9m0am71i0t1iqf0as2j6on"
+        mapStyle="mapbox://styles/jonystn/ckaedf2980f0g1ip7h8bdn246"
         onViewportChange={(viewport) => {
           setViewport(viewport);
         }}
@@ -84,9 +84,7 @@ export default function PlaceInfo(props) {
           <div className="BackBtn">{arrow}</div>
         </Link>
         <Marker latitude={places.latitude} longitude={places.longitude}>
-          <Link>
-            <img className="Marker" src={places.imgPath} alt="" />
-          </Link>
+          <img className="Marker" src={places.imgPath} alt="" />
         </Marker>
       </ReactMapGl>
 

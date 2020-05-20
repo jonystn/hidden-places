@@ -8,6 +8,17 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  align-content: space-around;
+  animation: 0.4s ease-in showMe2;
+
+  @keyframes showMe2 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   //hide mapboxlogo
   div.mapboxgl-ctrl-bottom-left,
@@ -19,10 +30,10 @@
     display: flex;
     justify-content: center;
     padding: 10px 0;
-    background-color: #ffffffb7;
+    background-color: #f0f0f0b7;
     z-index: 99999;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 
   .Pin {
@@ -33,13 +44,14 @@
   .Pin {
     filter: drop-shadow(0 4px 5px #32323280);
     position: relative;
-    top: 0;
+    bottom: 0;
     transition: top ease-in 0.2s;
   }
 
   .Pin:active {
     filter: drop-shadow(0 20px 10px #3232322d);
-    top: -10px;
+    bottom: 10px;
+    transition: top ease-in 0.2s;
   }
 
   input[type="file"] {
@@ -47,17 +59,22 @@
   }
   .FileUpload {
     padding: 10px 20px;
+    margin-top: 7px;
     display: flex;
     justify-content: center;
-    color: #9eb85d;
+    color: #00c4cc;
     font-weight: 600;
     font-size: 1.125rem;
     border-radius: 33px;
-    border: 2px solid #9eb85d;
+    border: 2px solid #00c4cc;
     height: 20px;
     width: 100%;
     align-items: center;
     cursor: pointer;
+  }
+
+  div > div {
+    top: 0;
   }
 
   .FilePreview {
@@ -69,7 +86,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 20px;
+    padding: 0 20px;
   }
 
   i {
@@ -79,15 +96,16 @@
 
   .Form {
     padding: 0 20px;
+    height: 45%;
   }
 
   input {
-    border: 2px solid #9eb85d;
+    border: 2px solid #00c4cc;
     border-radius: 20px 20px 0 0;
     margin: 0;
     padding: 0 20px;
     width: 100%;
-    margin-bottom: -2px;
+    margin-bottom: -12px;
   }
 
   .InputContainer {
@@ -96,33 +114,33 @@
     padding: 0;
   }
 
-  // input:active {
-  //   border: 2px solid #9eb85d;
-  //   border-radius: 33px;
-  //   // padding: 0;
-  // }
   input:focus,
   input:active {
     color: #323232;
     font-size: 1.2rem;
   }
 
-  .PrimaryButton {
-    margin-bottom: 90px;
-  }
-
   .TextBox {
     width: 100%;
     height: 115px;
     margin-top: 10px;
-    border: 2px solid #9eb85d;
+    border: 2px solid #00c4cc;
     border-radius: 0 0 20px 20px;
     // padding-top: 10px;
   }
 
   textarea {
     resize: none;
-    padding: 5px 20px;
-    font-size: 1.2rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+
+  *::placeholder {
+    color: #a7a7a7;
+    font-size: 1rem;
+  }
+
+  textarea:focus::placeholder {
+    color: transparent;
   }
 }

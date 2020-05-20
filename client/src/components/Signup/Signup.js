@@ -3,16 +3,10 @@ import { signup } from "../../services/auth";
 import { Link, Redirect } from "react-router-dom";
 import "./Signup.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEnvelope,
-  faLock,
-  faUser,
-  faCheck,
-} from "@fortawesome/free-solid-svg-icons";
-const mail = <FontAwesomeIcon icon={faEnvelope} style={{ color: "#9eb85d" }} />;
-const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#9eb85d" }} />;
-const user = <FontAwesomeIcon icon={faUser} style={{ color: "#9eb85d" }} />;
-const check = <FontAwesomeIcon icon={faCheck} style={{ color: "#d1d1cc" }} />;
+import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+const mail = <FontAwesomeIcon icon={faEnvelope} style={{ color: "#00C4CC" }} />;
+const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#00C4CC" }} />;
+const user = <FontAwesomeIcon icon={faUser} style={{ color: "#00C4CC" }} />;
 
 export default class Signup extends Component {
   state = {
@@ -82,14 +76,21 @@ export default class Signup extends Component {
             <div className="InputContainer">
               <i>{mail}</i>
               <label htmlFor="email"></label>
-              <input placeholder="E-mail" type="email" name="email" required />
+              <input
+                placeholder="E-mail"
+                value={this.state.email}
+                onChange={this.handleChange}
+                type="email"
+                name="email"
+                required
+              />
             </div>
 
             <div className="InputContainer">
               <i>{lock}</i>
               <label htmlFor="password"></label>
               <input
-                placeholder="Password"
+                placeholder="Password - Minimum 6 characters"
                 type="password"
                 name="password"
                 value={this.state.password}
@@ -98,11 +99,11 @@ export default class Signup extends Component {
                 required
               />
             </div>
-            <div>
+            <div className="Message">
+              &nbsp;
               {this.state.message && <span>{this.state.message}</span>}
-              <i>{check}</i>{" "}
-              <span className="SmallText">Minimum 6 characters</span>
             </div>
+
             <button type="submit" className="PrimaryButton">
               Sing up
             </button>
