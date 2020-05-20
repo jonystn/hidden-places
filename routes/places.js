@@ -5,7 +5,6 @@ const uploader = require("../configs/cloudinary");
 const axios = require("axios");
 
 router.post("/places", (req, res) => {
-  
   const getUrl = (longitude, latitude) => {
     return `https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?types=place&access_token=pk.eyJ1IjoiZm9uc29nbXMiLCJhIjoiY2swbWRsZWo3MTV6bTNkcW9vc29ybDZyMSJ9.EiT_I5moTDeyh3CM_Uc5CQ`;
   };
@@ -14,7 +13,7 @@ router.post("/places", (req, res) => {
   axios
     .get(getUrl(longitude, latitude))
     .then((response) => {
-      console.log( response.data);
+      console.log(response.data);
       const city = response.data.features[0].text;
       const country =
         response.data.features[0].context[
@@ -32,7 +31,7 @@ router.post("/places", (req, res) => {
         latitude,
         longitude,
         comment,
-        imgPath
+        imgPath,
       })
         .then((places) => res.status(201).json(places))
         .catch((error) => {
@@ -71,48 +70,37 @@ router.get("/place-info/:id", (req, res) => {
     });
 });
 
-
-router.put("/placeinfo/:id", (req, res)=>{
-  const {name,
+router.put("/placeinfo/:id", (req, res) => {
+  const {
+    name,
     city,
     country,
     latitude,
     longitude,
     comment,
     imgPath,
-    imgName} = req.body;
+    imgName,
+  } = req.body;
 
   Places.findByIdAndUpdate(
     req.params.id,
-    {name,
-      city,
-      country,
-      latitude,
-      longitude,
-      comment,
-      imgPath,
-      imgName},
-      {new: true}
+    { name, city, country, latitude, longitude, comment, imgPath, imgName },
+    { new: true }
   )
-  .then(places => {
-    res.status(200).json(places);
-  })
-  .catch(error=>{
-    res.json(error);
-  });
+    .then((places) => {
+      res.status(200).json(places);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
 });
 
 router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
-  if(!req.file) {
+  if (!req.file) {
     next(new Error("No file uploaded"));
     return;
   }
-  res.json({ secure_url: req.file.secure_url})
-})
-
-
-
-
-
+  res.json({ secure_url: req.file.secure_url });
+});
 
 module.exports = router;
