@@ -1,20 +1,21 @@
 import * as React from "react";
 import { Component } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 import { render } from "react-dom";
 import MapGL, { Marker } from "react-map-gl";
 import "./SpotAPlace.scss";
 import Pin from "./Pin";
 import FileInput from "./FileInput";
 import axios from "axios";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       viewport: {
-        latitude: 52.5196,
-        longitude: 13.4069,
+        latitude: 52,
+        longitude: 13,
         width: "100%",
         height: "37%",
         zoom: 15,
@@ -30,6 +31,24 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount = () => {
+    navigator.geolocation.getCurrentPosition((response) => {
+      this.setState({
+        viewport: {
+          latitude: response.coords.latitude,
+          longitude: response.coords.longitude,
+          width: "100%",
+          height: "37%",
+          zoom: 15,
+        },
+        marker: {
+          latitude: response.coords.latitude,
+          longitude: response.coords.longitude,
+        },
+      });
+    });
+  };
+
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -39,7 +58,7 @@ export default class App extends Component {
   };
 
   handleFile = (file) => {
-    console.log("FILE", file);
+    // console.log("FILE", file);
     this.setState({
       file: file,
     });
@@ -107,7 +126,7 @@ export default class App extends Component {
         <form
           className="Form"
           onSubmit={this.handleSubmit}
-          enctype="multipart/form-data"
+          encType="multipart/form-data"
         >
           <div className="InputContainer">
             <label htmlFor="name"></label>
@@ -118,7 +137,7 @@ export default class App extends Component {
               id="name"
               value={this.state.name}
               onChange={this.handleChange}
-              autocomplete="off"
+              autoComplete="off"
               required
             />
           </div>

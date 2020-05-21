@@ -68,7 +68,7 @@ export default class Signup extends Component {
                 value={this.state.username}
                 onChange={this.handleChange}
                 id="username"
-                autocomplete="off"
+                autoComplete="off"
                 required
               />
             </div>
@@ -105,7 +105,7 @@ export default class Signup extends Component {
             </div>
 
             <button type="submit" className="PrimaryButton">
-              Sing up
+              Sign up
             </button>
           </form>
 

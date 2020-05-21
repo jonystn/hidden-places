@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import "./App.scss";
 import "./components/Navbar/Navbar";
 import { Switch, Route } from "react-router-dom";
@@ -23,6 +24,14 @@ class App extends React.Component {
       user: user,
     });
   };
+
+  // componentDidMount() {
+  //   axios.get(`/user/user/${this.props.user._id}`).then((res) => {
+  //     this.setState({
+  //       user: res.data,
+  //     });
+  //   });
+  // }
 
   render() {
     return (
