@@ -3,6 +3,14 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+
+
+
+
+
+
+
 
 router.post("/signup", (req, res) => {
   const { username, password, email } = req.body;
@@ -93,5 +101,10 @@ router.get(
     failureRedirect: "/login",
   })
 );
+
+
+
+
+//Facebook Passport
 
 module.exports = router;

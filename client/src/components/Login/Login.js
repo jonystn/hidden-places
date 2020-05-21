@@ -5,6 +5,7 @@ import "./Login.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import Facebook from "../Facebook"
 
 const lock = <FontAwesomeIcon icon={faLock} style={{ color: "#00C4CC" }} />;
 const user = <FontAwesomeIcon icon={faUser} style={{ color: "#00C4CC" }} />;

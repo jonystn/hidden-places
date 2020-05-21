@@ -15,6 +15,7 @@ import axios from "axios";
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#00C4CC" }} />;
 
 export default function Explore(props) {
+
   const [viewport, setViewport] = useState({});
 
   const onSelected = (viewport) => {
@@ -40,14 +41,17 @@ export default function Explore(props) {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((res) => {
+
       setViewport({
         latitude: res.coords.latitude,
         longitude: res.coords.longitude,
         width: "100%",
+
         height: "55%",
         zoom: 10,
       });
     });
+
     axios
       .get("/spotaphoto/places")
       .then((response) => {
@@ -108,6 +112,7 @@ export default function Explore(props) {
           props.user.username.slice(1)}
       </h1>
 
+
       {/* <div className="Form">
         <i>{search}</i>
       </div> */}
@@ -152,6 +157,7 @@ export default function Explore(props) {
           />
         </div>
       </ReactMapGl>
+      
     </div>
   );
 }
