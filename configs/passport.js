@@ -52,11 +52,11 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       // to see the structure of the data in received response:
-      console.log("Google account details:", profile);
+      // console.log("Google account details:", profile);
 
       User.findOne({ googleID: profile.id })
         .then((user) => {

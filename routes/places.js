@@ -13,14 +13,14 @@ router.post("/places", (req, res) => {
   axios
     .get(getUrl(longitude, latitude))
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       const city = response.data.features[0].text;
       const country =
         response.data.features[0].context[
           response.data.features[0].context.length - 1
         ].text;
-      console.log(city);
-      console.log(req.file, "FILE");
+      // console.log(city);
+      // console.log(req.file, "FILE");
       const imgPath = req.body.file.secure_url;
       //const imgName = req.file.originalname;
 
@@ -32,6 +32,7 @@ router.post("/places", (req, res) => {
         longitude,
         comment,
         imgPath,
+        rating: 0,
       })
         .then((places) => res.status(201).json(places))
         .catch((error) => {
@@ -42,11 +43,11 @@ router.post("/places", (req, res) => {
       console.log(error);
     });
 
-  console.log(req.body);
+  // console.log(req.body);
 });
 
 router.get("/places", (req, res) => {
-  console.log("this is working");
+  // console.log("this is working");
   Places.find()
 
     .then((places) => {
@@ -101,6 +102,18 @@ router.post("/upload", uploader.single("imageUrl"), (req, res, next) => {
     return;
   }
   res.json({ secure_url: req.file.secure_url });
+});
+
+router.patch("/rating/:id", (req, res) => {
+  console.log(req.params.id);
+  console.log(req.body);
+  Places.findByIdAndUpdate(
+    req.params.id,
+    {
+      rating: parseFloat(req.body.rating.toFixed(1)),
+    },
+    { new: true }
+  ).then((place) => res.json(place));
 });
 
 module.exports = router;

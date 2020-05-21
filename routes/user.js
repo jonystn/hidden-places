@@ -12,9 +12,9 @@ router.put("/favorites/:placeId", async (req, res) => {
   let isFavorite = user.favorites.find((favorite) => {
     return favorite == req.params.placeId;
   });
-  console.log(isFavorite, "FAV");
-  console.log(user, "USER");
-  console.log(req.params.placeId);
+  // console.log(isFavorite, "FAV");
+  // console.log(user, "USER");
+  // console.log(req.params.placeId);
   if (isFavorite) {
     User.findByIdAndUpdate(
       userId,
@@ -25,6 +25,7 @@ router.put("/favorites/:placeId", async (req, res) => {
         new: true,
       }
     )
+      .populate("favorites")
       .then((userUpdated) => res.json(userUpdated))
       .catch((err) => res.status(400).json(err));
   } else {
@@ -37,6 +38,7 @@ router.put("/favorites/:placeId", async (req, res) => {
         new: true,
       }
     )
+      .populate("favorites")
       .then((userUpdated) => res.json(userUpdated))
       .catch((err) => res.status(400).json(err));
   }
@@ -47,6 +49,21 @@ router.get("/favorites/:id", (req, res) => {
   User.findById(req.params.id)
     .populate("favorites")
     .then((user) => {
+      if (!user) {
+        res.status(404).json(user);
+      }
+      res.json(user);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+
+router.get("/user/:id", (req, res) => {
+  User.findById(req.params.id)
+    .populate("favorites")
+    .then((user) => {
+      console.log(user);
       if (!user) {
         res.status(404).json(user);
       }
