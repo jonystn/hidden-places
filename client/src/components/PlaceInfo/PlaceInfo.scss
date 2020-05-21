@@ -92,9 +92,22 @@
     z-index: 9999;
   }
 
-  .Rating i {
+  .Rating {
+    color: #d1d1cc;
+    font-size: 1.5rem;
+    transition: 0.6s ease-in-out;
+  }
+
+  .RatingActive {
+    color: #ffad14;
     font-size: 1.5rem;
     filter: drop-shadow(0px 0px 8px #f8a2029a);
+    transition: 0.6s ease-in-out;
+  }
+
+  .NumRating {
+    margin-left: 10px;
+    font-size: 1.1rem;
   }
 
   .Favorite {
@@ -110,15 +123,24 @@
     transition: 0.6s ease-in-out;
   }
 
-  .Favorite:hover {
-    font-size: 1.9rem;
-    color: #ff3f4f;
-    filter: drop-shadow(0px 0px 5px #ff3f4f91);
-    transition: 0.6s ease-in-out;
+  div.PlaceInfoTab > div > div {
+    display: flex;
+    align-items: center;
   }
+
+  // .Favorite:hover {
+  //   filter: drop-shadow(0px 0px 5px #ff3f4f91);
+  //   color: #ff3f4f;
+  //   transition: 0.6s ease-in-out;
+  // }
 
   button {
     border: none;
+    outline: none;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
     outline: none;
   }
 

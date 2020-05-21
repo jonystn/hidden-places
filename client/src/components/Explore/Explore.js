@@ -8,39 +8,54 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ReactMapGl, { Marker, GeolocateControl } from "react-map-gl";
 import Geocoder from "react-mapbox-gl-geocoder";
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 import axios from "axios";
 
 const search = <FontAwesomeIcon icon={faSearch} style={{ color: "#00C4CC" }} />;
 
 export default function Explore(props) {
-  const [viewport, setViewport] = useState({
-   
-  });
 
+  const [viewport, setViewport] = useState({});
 
+  const onSelected = (viewport) => {
+    // console.log(viewport);
+    setViewport(viewport);
+  };
 
-const onSelected =(viewport) => {
-  console.log(viewport)
-  setViewport(viewport)
-}
-
-
+  const handleFocus = (event) => event.target.select();
+  const MyInput = (props) => (
+    <div {...props} style={{ position: "relative", with: "100%" }}>
+      <i style={{ position: "absolute", top: "16px", left: "10px" }}>
+        {search}
+      </i>
+      <input
+        {...props}
+        placeholder="Explore places"
+        autoFocus="autofocus"
+        onFocus={handleFocus}
+        value={undefined}
+      />
+    </div>
+  );
   const [places, setPlaces] = useState([]);
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(res => {
+    navigator.geolocation.getCurrentPosition((res) => {
+
       setViewport({
         latitude: res.coords.latitude,
         longitude: res.coords.longitude,
         width: "100%",
-        height: "50%",
+
+        height: "55%",
         zoom: 10,
-      })
-    })
+      });
+    });
+
     axios
       .get("/spotaphoto/places")
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPlaces(response.data);
       })
       .catch((err) => {
@@ -96,24 +111,12 @@ const onSelected =(viewport) => {
         {props.user.username.charAt(0).toUpperCase() +
           props.user.username.slice(1)}
       </h1>
-      {/* <form className="Form">
-        <div className="InputContainer">
-          <i>{search}</i>
-          <label htmlFor="name"></label>
-          <input
-            placeholder="Discover places"
-            type="text"
-            name="search"
-            // value={this.state.name}
-            // onChange={this.handleChange}
-            id="search"
-          />
-        </div>
-      </form> */}
-      <Geocoder
-    mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN} onSelected={onSelected} viewport={viewport} hideOnSelect={true}
-    
-/>
+
+
+      {/* <div className="Form">
+        <i>{search}</i>
+      </div> */}
+
       <ReactMapGl
         className="Map"
         {...viewport}
@@ -136,6 +139,23 @@ const onSelected =(viewport) => {
               </Marker>
             ))
           : null}
+
+        <div className="ContainerSearch">
+          <Geocoder
+            className="InputContainer"
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            onSelected={onSelected}
+            viewport={viewport}
+            inputComponent={MyInput}
+            hideOnSelect={true}
+            limit={4}
+            pointZoom={25}
+          />
+          <GeolocateControl
+            positionOptions={{ enableHighAccuracy: true }}
+            trackUserLocation={true}
+          />
+        </div>
       </ReactMapGl>
       
     </div>

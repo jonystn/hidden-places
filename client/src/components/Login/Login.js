@@ -55,7 +55,7 @@ export default class Login extends Component {
 
           <Link to="/signup">
             <span className="MediumText">Don’t you have an account yet?</span>{" "}
-            <span className="Hyperlink">Sing up!</span>
+            <span className="Hyperlink">Sign up!</span>
           </Link>
 
           <form className="Form" onSubmit={this.handleSubmit}>
@@ -69,7 +69,7 @@ export default class Login extends Component {
                 value={this.state.username}
                 onChange={this.handleChange}
                 id="username"
-                autocomplete="off"
+                autoComplete="off"
                 required
               />
             </div>
@@ -93,12 +93,12 @@ export default class Login extends Component {
               {this.state.message && <span>{this.state.message}</span>}
             </div>
             <button type="submit" className="PrimaryButton">
-              Sing in
+              Sign in
             </button>
           </form>
 
           <span className="MediumText">or continue with</span>
-          {/* <Facebook /> ---- needs to be finished*/}
+
           <img src="../images/facebook.svg" alt="Facebook logo" />
           <img src="../images/google.svg" alt="Google logo" />
         </div>

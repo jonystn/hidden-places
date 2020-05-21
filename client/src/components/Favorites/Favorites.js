@@ -4,20 +4,37 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faStar } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import Rating from "react-rating";
 
 const trash = <FontAwesomeIcon icon={faTrash} style={{ color: "#00C4CC" }} />;
-const star = <FontAwesomeIcon icon={faStar} style={{ color: "#ffad14" }} />;
+const star = <FontAwesomeIcon icon={faStar} />;
 
 function Favorites(props) {
   const [favorites, setFavorites] = useState([]);
+  const handleDelete = (id) => {
+    //console.log(props.match.params.id);
+    axios
+      .put(`/user/favorites/${id}`)
+      .then((response) => {
+        // console.log(response.data, "USER");
+        setFavorites(response.data.favorites);
+        props.setUser(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
-    console.log(props.user);
+    // console.log(props.user);
     axios
       .get(`/user/favorites/${props.user._id}`)
       .then((response) => {
-        console.log(response.data, "USER");
+        // console.log(response.data, "USER");
         setFavorites(response.data.favorites);
+        props.setUser(response.data);
       })
+
       .catch((err) => {
         console.log(err);
       });
@@ -34,21 +51,27 @@ function Favorites(props) {
       {favorites &&
         favorites.map((fav, i) => {
           return (
-            <div className="FavItem">
+            <div key={fav._id} className="FavItem">
               <div className="Container">
                 <Link to={`/place-info/${fav._id}`}>
                   <img className="Photo" src={fav.imgPath} alt="" />
                 </Link>
-                <span className="MediumTextBold">{fav.name}</span>
+                <Link to={`/place-info/${fav._id}`}>
+                  <span className="MediumTextBold">{fav.name}</span>
+                </Link>
                 <div className="ContainerRating">
-                  <div className="Rating">
-                    <i>{star}</i>
-                    <i>{star}</i>
-                    <i>{star}</i>
-                    <i>{star}</i>
-                    <i>{star}</i>
+                  <div>
+                    <Rating
+                      emptySymbol={<i className="Rating">{star}</i>}
+                      fullSymbol={<i className="RatingActive">{star}</i>}
+                      initialRating={fav.rating}
+                      readonly
+                    />{" "}
+                    <span className="NumRating">{fav.rating}</span>
                   </div>
-                  <i className="DeleteFavorite">{trash}</i>
+                  <button type="button" onClick={() => handleDelete(fav._id)}>
+                    <i className="DeleteFavorite">{trash}</i>
+                  </button>
                 </div>
               </div>
             </div>
